@@ -230,7 +230,8 @@ $(foreach component,$(COMPONENTS), 					\
 # final linking step to produce .elf
 $(PROGRAM_OUT): $(WHOLE_ARCHIVES) $(COMPONENT_ARS) $(BUILD_DIR)libgcc.a $(BUILD_DIR)libc.a $(SDK_PROCESSED_LIBS) $(LINKER_SCRIPTS)
 	$(vecho) "LD $@"
-	$(Q) $(LD) $(LDFLAGS) -Wl,--whole-archive $(WHOLE_ARCHIVES) -Wl,--no-whole-archive -Wl,--start-group $(COMPONENT_ARS) $(BUILD_DIR)libgcc.a $(BUILD_DIR)libc.a $(LIB_ARGS) $(SDK_LIB_ARGS) -Wl,--end-group -o $@
+#	$(Q) $(LD) $(LDFLAGS) -Wl,--whole-archive $(WHOLE_ARCHIVES) -Wl,--no-whole-archive -Wl,--start-group $(COMPONENT_ARS) $(BUILD_DIR)libgcc.a $(BUILD_DIR)libc.a $(LIB_ARGS) $(SDK_LIB_ARGS) -Wl,--end-group -o $@
+	$(Q) $(LD) $(LDFLAGS) -Wl,--whole-archive $(WHOLE_ARCHIVES) -Wl,--no-whole-archive -Wl,--start-group $(COMPONENT_ARS) $(BUILD_DIR)libgcc.a $(BUILD_DIR)libc.a $(SDK_LIB_ARGS) -Wl,--end-group -o $@
 
 $(BUILD_DIR) $(FIRMWARE_DIR) $(BUILD_DIR)sdklib:
 	$(Q) mkdir -p $@
